@@ -61,10 +61,12 @@ int stackIsEmpty(Stack s) {
 
 // 释放掉堆栈所有节点的内存
 void stackEnd(Stack s) {
-	Node p;
-	for (p = s->head; p; p = p->next) {
+	Node p, q;
+	for (p = s->head; p; p = q) {
+		q = p->next;
 		free(p);
 	}
+	p = q = NULL;
 	s->head = NULL;
 	free(s);
 }
